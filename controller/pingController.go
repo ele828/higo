@@ -5,7 +5,6 @@ import (
 	"github.com/ele828/higo/core"
 
 	"net/http"
-//	"database/sql"
 )
 
 func PingController(c *gin.Context) {
