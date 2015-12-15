@@ -1,7 +1,10 @@
 package config
 
 const (
-	AppHost = ":8080"
+	// App Settings
+	AppHost = ":3000"
+
+	// Database Settings
 	DbUser = "root"
 	DbPass = ""
 	DbHost = "127.0.0.1"

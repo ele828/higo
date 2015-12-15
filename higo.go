@@ -10,7 +10,6 @@ import (
 func main() {
     r := gin.New()
     core.Install()
-    // Set up routers
     router.PublicRouter(r)
     r.Run(config.AppHost)
 }
