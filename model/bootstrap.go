@@ -1,13 +1,12 @@
 package model
 
 import (
-	"github.com/jinzhu/gorm"
-	_ "github.com/go-sql-driver/mysql"
 	. "github.com/ele828/higo/config"
+	_ "github.com/go-sql-driver/mysql"
+	"github.com/jinzhu/gorm"
 
 	"fmt"
 )
-
 
 var (
 	DB gorm.DB
@@ -31,11 +30,12 @@ func InstallORMEngine() error {
 }
 
 func InstallModels() {
-	DB.Set("gorm:table_options", "ENGINE=InnoDB").
-		Set("gorm:table_options", "DEFAULT CHARSET=utf8").
-			AutoMigrate(
-					&Article{},
-					&Topic{},
-					&Comment{},
-				)
+	DB.Set("gorm:table_options", "ENGINE=InnoDB").Set("gorm:table_options", "DEFAULT CHARSET=utf8").
+		AutoMigrate(
+		&Article{},
+		&Topic{},
+		&Tag{},
+		&Comment{},
+		&Friend{},
+	)
 }

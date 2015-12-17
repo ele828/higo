@@ -9,4 +9,5 @@ import (
 // Set http request dispatcher
 func PublicRouter(r *gin.Engine) {
 	r.GET("/ping", controller.PingController)
+	r.GET("/read", controller.ReadTest)
 }

@@ -12,8 +12,12 @@ type Topic struct {
 	Count int8   `sql:"not null; default:0;"`
 }
 
-func(t *Topic) Create() {
-	DB.Create(t)
+func(t *Topic) Create() error {
+	db := DB.Create(t)
+	if db.Error != nil {
+		return db.Error
+	}
+	return nil
 }
 
 // Read Topic Data From Storage.

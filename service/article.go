@@ -6,6 +6,15 @@ import (
 
 type ArticleService struct{}
 
+func (as *ArticleService) Read(id string) (*model.Article, error) {
+	article := new(model.Article)
+	err := article.Read(id)
+	if err != nil {
+		return nil, err
+	}
+	return article, nil
+}
+
 // Write an article service
 func (as *ArticleService) Write(title, content, link, topicId string) error {
 	topic := new(model.Topic)
@@ -13,7 +22,7 @@ func (as *ArticleService) Write(title, content, link, topicId string) error {
 	if err != nil {
 		return err
 	}
-	var article = model.Article{
+	var article = model.Article {
 		Title:   title,
 		Content: content,
 		Link:    link,
@@ -26,11 +35,20 @@ func (as *ArticleService) Write(title, content, link, topicId string) error {
 	return nil
 }
 
-func (as *ArticleService) Read(id string) (*model.Article, error) {
-	article := new(model.Article)
-	err := article.Read(id);
-	if err != nil {
-		return nil, err
+func (as *ArticleService) WriteComment(id, name, email, content string) error {
+	comment := model.Comment{
+		Name: name,
+		Email: email,
+		Content: content,
 	}
-	return article, nil
+	article, err := as.Read(id)
+	if err != nil {
+		return err
+	}
+
+	err = article.WriteComment(comment)
+	if err != nil {
+		return err
+	}
+	return nil
 }
