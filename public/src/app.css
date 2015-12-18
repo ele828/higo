@@ -1,0 +1,12 @@
+body {
+  padding: 0px;
+  margin: 0px;
+  font-family: Muli,'Helvetica Neue','Hiragino Sans GB','WenQuanYi Micro Hei','Microsoft Yahei',sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection {
+    background: #7bc91e;
+    color: #fff;
+    text-shadow: none;
+}

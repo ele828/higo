@@ -2,7 +2,7 @@ package config
 
 const (
 	// App Settings
-	AppHost = ":3000"
+	AppHost = ":8080"
 
 	// Database Settings
 	DbUser = "root"
