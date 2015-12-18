@@ -15,7 +15,7 @@ Under constructing now.
 
 # 3rd parties
 * gin
-* xorm
+* gorm
 * mysql-drive
 
 
