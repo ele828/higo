@@ -41,7 +41,6 @@ func (a *Article) Read(id string) error {
 	if err != nil {
 		return err
 	}
-
 	return nil
 }
 

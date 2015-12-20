@@ -5,8 +5,53 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
+@font-face {
+  font-family: 'iconfont';
+  src: url('//at.alicdn.com/t/font_1450608989_5145972.eot'); /* IE9*/
+  src: url('//at.alicdn.com/t/font_1450608989_5145972.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+  url('//at.alicdn.com/t/font_1450608989_5145972.woff') format('woff'), /* chrome、firefox */
+  url('//at.alicdn.com/t/font_1450608989_5145972.ttf') format('truetype'), /* chrome、firefox、opera、Safari, Android, iOS 4.2+*/
+  url('//at.alicdn.com/t/font_1450608989_5145972.svg#iconfont') format('svg'); /* iOS 4.1- */
+}
+
+/* Let's get this party started */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+    background: rgba(255,255,255,0.8);
+    -webkit-box-shadow: 0 0 1px rgba(0,0,0,0.3);
+}
+
+.iconfont {
+    font-family: 'iconfont';
+    font-style: normal;
+    font-size: 14px;
+    margin: 0;
+    padding: 0;
+}
+
 ::selection {
-    background: #7bc91e;
+    background: #35455c;
     color: #fff;
     text-shadow: none;
+}
+
+a {
+    text-decoration: none;
+    color: #35455c;
+}
+
+a:visited {
+    color: #35455c;
 }

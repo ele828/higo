@@ -23,20 +23,22 @@ body {
 }
 
 :local(.back) {
-	position: absolute;
+	position: fixed;
 	top: 0%;
 	background: url("https://images.unsplash.com/photo-1433354359170-23a4ae7338c6?crop=entropy&dpr=2&fit=crop&fm=jpg&h=800&ixjsv=2.1.0&ixlib=rb-0.3.5&q=50&w=1325");
+	/*background: url("https://images.unsplash.com/reserve/m6rT4MYFQ7CT8j9m2AEC_JakeGivens%20-%20Sunset%20in%20the%20Park.JPG?crop=entropy&dpr=2&fit=crop&fm=jpg&h=775&ixjsv=2.1.0&ixlib=rb-0.3.5&q=50&w=1275");*/
 	width: 100%;
 	height: 100%;
 	background-size: cover;
-
+	background-position: center;
+	animation-name: scroll;
+    animation-duration: 0.2s;
+    animation-timing-function: linear;
+	animation-fill-mode: forwards;
 }
-:local(.test) {
-	height: 500px;
-	padding-left: 20px;
-	padding-top: 20px;
-	background: green;
-	color: #fff;
+@keyframes scroll {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
 }
 :local(.profile) {
 	position: absolute;
@@ -46,15 +48,21 @@ body {
 	z-index: 100;
 }
 :local(.avatar) {
-	width: 100px;
-	height: 100px;
+	width: 90px;
+	height: 90px;
 	border-radius: 50%;
-	box-shadow: 0px 0px 5px 1px #aaa;
+	box-shadow: 0px 0px 3px 3px #eee;
 	transition: .5s;
 	text-align: center;
 }
 :local(.avatar:hover) {
 	transform: rotate(-719deg) scale(1.05);
+}
+:local(.intro) {
+	margin-top: 20px;
+}
+:local(.intro b) {
+	color: #35455c;
 }
 :local(.site) {
 	margin-top: 40px;
@@ -63,21 +71,27 @@ body {
 }
 :local(.site li) {
 	display: inline-block;
-	margin-right: 20px;
-	width: 100px;
-	height: 40px;
+}
+:local(.site a) {
+	display: inline-block;
+	margin-right: 18px;
+	padding: 0px 10px;
 	line-height: 40px;
 	text-align: center;
 	background: rgba(255,255,255,0.6);
 	border-radius: 30px;
-	border: 1px solid #000;
-	color: #000;
+	border: 1px solid #fff;
+	color: #35455c;
 	font-weight: bold;
 	transition: .3s;
+	text-decoration: none;
 }
-:local(.site li:hover) {
-	background: rgba(0,0,0,0.7);
-	color: #fff;
+:local(.site a:hover) {
+	color: #fff !important;
+	background: rgba(0,0,0,0.5);
+}
+:local(.site a:visited) {
+	color: #35455c;
 }
 :local(.avatarWrap) {
 	width: 100%;
@@ -86,7 +100,7 @@ body {
 :local(.copyright) {
 	z-index: 100;
 	position: absolute;
-	bottom: 20px;
+	bottom: 10px;
 	height: 20px;
 	width: 100%;
 	text-align: center;
@@ -99,4 +113,13 @@ body {
 	color: #fff;
 	font-size: 14px;
 	position: absolute;
+}
+:local(.appear) {
+	animation-name: animation1;
+    animation-duration: 0.5s;
+    animation-timing-function: linear;
+}
+@keyframes animation1 {
+    0% {opacity: 0;}
+    100% {opacity: 1;}
 }

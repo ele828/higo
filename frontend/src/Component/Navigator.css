@@ -1,3 +1,19 @@
+:local(.logo) {
+	width: 40px;
+	margin-top: 18px;
+	transition: .3s;
+}
+:local(.logo:hover) {
+	animation-name: run;
+    animation-duration: 0.5s;
+    animation-timing-function: linear;
+	animation-fill-mode: forwards;
+	transform: rotate(90deg);
+}
+@keyframes run {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+}
 :local(.wrap) {
 	padding: 0;
 	margin: 0;
@@ -5,7 +21,9 @@
 }
 :local(.nav) {
 	position: absolute;
-	z-index: 100;
+	position: fixed;
+	top: 0;
+	z-index: 1000;
 	width: 100%;
 	top: 0;
 	left: 0;
@@ -13,9 +31,25 @@
 	padding: 0;
 	height: 70px;
 	background: rgba(255, 255, 255, 0.5);
-	border-bottom: 1px solid #ededed;
+	border-bottom: 1px solid #eee;
 	overflow: hidden;
-	box-shadow: 0px 0px 10px 4px #eee;
+	box-shadow: 0px 0px 3px 1px rgba(255, 255, 255, 0.5);
+}
+:local(.whitenav) {
+	position: absolute;
+	position: fixed;
+	top: 0;
+	z-index: 1000;
+	width: 100%;
+	top: 0;
+	left: 0;
+	margin: 0;
+	padding: 0;
+	height: 70px;
+	border-bottom: 1px solid #eee;
+	overflow: hidden;
+    background: rgba(255, 255, 255, 0.7);
+    box-shadow: 0px 0px 1px 1px #ccc !important;
 }
 :local(.menu) {
 	list-style: none;
@@ -30,43 +64,29 @@
 	width: 95px;
 	height: 35px;
 	text-align: center;
-	border: 2px solid #fff;
 	border-radius: 30px;
-	color: #000;
+	color: #35455c;
 	text-decoration: none;
+	border: 1px solid rgba(255, 255, 255, 0);;
 	transition: .4s;
 }
 :local(.menu li a:hover) {
-	border: 2px solid #000;
-	/*background: #000;*/
 	/*color: #fff;*/
+	border: 1px solid #35455c;
 }
 .highlight {
 	transition: .5s;
-	border: 2px solid #000 !important;
-	/*background: #000;*/
-	/*color: #fff !important;*/
+	/*background: #35455c;*/
+	border: 1px solid #35455c !important;
 }
 
-.in {
-	animation-name: animation1;
-    animation-duration: 0.5s;
-    animation-timing-function: linear;
-}
-
-@keyframes animation1 {
-    0% {opacity: 0;}
-    100% {opacity: 1;}
-}
-@keyframes animation2 {
-    0% {opacity: 1;}
-    100% {opacity: 0;}
-}
 :local(.left) {
-	width: 680px;
+	padding-left: 100px;
+	width: 300px;
 	display: inline-block;
 }
 :local(.right) {
 	display: inline-block;
 	position: absolute;
+	right: 0;
 }

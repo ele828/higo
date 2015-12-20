@@ -2,29 +2,38 @@ import React, { Component } from 'react';
 import { Router, Route, Link } from 'react-router'
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
 import styles from './Navigator.css'
-import Profile from './Profile'
+import e from './e.png'
 
 const navList = [
         {
-          name: 'HOME',
+          name: 'Home',
           link: '/'
         },{
-          name: 'ARTICLE',
-          link: '/user1'
+          name: 'Article',
+          link: '/list/1'
         }, {
-          name: 'TOPIC',
-          link: '/user2'
+          name: 'Topic',
+          link: '/topic'
         }, {
-          name: 'ABOUT',
-          link: '/'
+          name: 'Tag',
+          link: '/tag'
+        }, {
+          name: 'Friend',
+          link: '/friend'
+        }, {
+          name: 'About',
+          link: '/about'
         }
     ];
 
 export default class Navigator extends Component {
   constructor(props, context) {
     super(props, context)
+    const white = props.white || false;
     this.state = {
-      active: 0
+      active: 0,
+      white: white,
+      resetFunc: props.reset || function() {}
     }
 
   }
@@ -45,7 +54,7 @@ export default class Navigator extends Component {
   	const menu = navList.map( (item, i)=> {
   		return (
   				<li key={i}>
-	       			<Link to={item.link} onClick={()=>{ this.setState({active: i}) }}
+	       			<Link to={item.link} onClick={()=>{ this.setState({active: i}); this.state.resetFunc(); }}
 	       				className={this.state.active === i ? "highlight" : ""}>
 	       				{item.name}
 	       			</Link>
@@ -55,9 +64,11 @@ export default class Navigator extends Component {
 
     return (
       <section className={styles.wrap}>
-      	<nav className={styles.nav}>
+      	<nav className={this.state.white?styles.whitenav:styles.nav}>
       		<div className={styles.left}>
-      		  <Profile />
+                <Link to="/">
+                    <img src={e} className={styles.logo}/>
+                </Link>
       		</div>
 	       	<div className={styles.right}>
 	       		<ul className={styles.menu}>
@@ -66,7 +77,6 @@ export default class Navigator extends Component {
 		       	</ul>
 	       	</div>
 	    </nav>
-	      {this.props.children}
       </section>
     )
   }
