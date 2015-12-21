@@ -1,0 +1,218 @@
+section
+
+  h2 Typography
+
+  h3 Body copy
+  p The default <code>font-size</code> is <strong>16px</strong> with <code>line-height</code> of <strong>1.5</strong>. Additionally all paragraphs get have a bottom margin of <code>30px</code> (the default spacing unit).
+
+  :markdown
+    ```html
+      <p>...</p>
+    ```
+
+  h3 Headings
+  p All HTML headings are available&mdash;running from <code>h1</code> to <code>h6</code>.
+
+  .sample
+    h1 Headline 1 is 42px / 38px
+    h2 Headline 2 is 36px / 32px
+    h3 Headline 3 is 30px / 32px
+    h4 Headline 4 is 24px / 20px
+    h5 Headline 5 is 18px / 16px
+    h6 Headline 6 is 16px / 14px, uppercased
+
+  :markdown
+    ```html
+      <h1>Headline 1 is 42px / 38px</h1>
+      <h2>Headline 2 is 36px / 32px</h2>
+      <h3>Headline 2 is 30px / 32px</h3>
+      <h4>Headline 2 is 24px / 20px</h4>
+      <h5>Headline 2 is 18px / 16px</h5>
+      <h6>Headline 2 is 16px / 14px, uppercased</h6>
+    ```
+
+  h4 Headings Usage
+
+  dl 
+    dt Heading 1
+    dd <code>h1</code> is a top-level header that should appear only once per page, usually within <code>header</code> area. It can be used as a container for logotypes.
+
+  dl
+    dt Heading 2
+    dd <code>h2</code> can be alternatively used as a top-level page header, optionally outside of <code>header</code>.
+
+  dl
+    dt Heading 3
+    dd <code>h3</code> is used to denotate sections on a page.
+
+  dl
+    dt Heading 4, 5, 6
+    dd <code>h4</code>, <code>h5</code>, <code>h6</code> are used for sub-sections on a page.
+
+  h3 Text manipulations
+  p Basic HTML inline text manipulations are supported.
+
+  .sample
+    ul.list-unstyled
+      li This text snippet will be <strong>bold</strong>
+      li This text snippet will be <em>emphasized</em>
+      li This text snippet will be <u>underlined</u>
+      li This text snippet will be <s>strikedthrough</s>
+      li This text snippet will be <small>small</small>
+      li This text snippet will be <sub>subscripted</sub>
+      li This text snippet will be <sup>superscripted</sup>
+      li This text snippet will be <abbr title='abbreviation'>abbreviated</abbr>
+      li This text snippet will be <mark>highlighted</mark>
+      li This text snippet will be an <code>inline code sample</code>
+
+  :markdown
+    ```html
+      This text snippet will be <strong>bold</strong>
+      This text snippet will be <em>emphasized</em>
+      This text snippet will be <u>underlined</u>
+      This text snippet will be <s>strikedthrough</s>
+      This text snippet will be <small>small</small>
+      This text snippet will be <sub>subscripted</sub>
+      This text snippet will be <sup>superscripted</sup>
+      This text snippet will be <abbr title='abrreviation'>abbreviated</abbr>
+      This text snippet will be <mark>highlighted</mark>
+      This text snippet will be an <code>inline code sample</code>
+    ```
+
+  h3 Blockquotes
+  p To quote an external source use a <code>blockquote</code> element. 
+
+  blockquote
+    p You are not your idea, and if you identify too closely with your ideas, you will take offense when they are challenged.
+
+  :markdown
+    ```html
+      <blockquote>
+        <p>You are not your idea, and if you identify too closely with your ideas, you will take offense when they are challenged.</p>
+      </blockquote>
+    ```
+
+  p To add a source of the quote use the <code>footer</code> element.
+
+  blockquote
+    p Failure isn’t a necessary evil. In fact, it isn’t evil at all. It is a necessary consequence of doing something new.
+    footer Ed Catmull in <cite>Creativity, Inc.</cite>
+
+  :markdown
+    ```html
+      <blockquote>
+        <p>Failure isn’t a necessary evil. In fact, it isn’t evil at all. It is a necessary consequence of doing something new.</p>
+        <footer>Ed Catmull in <cite>Creativity, Inc.</cite></footer>
+      </blockquote>
+    ```
+
+  p To center a <code>blockquote</code> add <code>blockquote-centered</code> class.
+
+  blockquote.blockquote-centered
+    p Getting the right people and the right chemistry is more important than getting the right idea.
+
+  :markdown
+    ```html
+      <blockquote class='blockquote-centered'>
+        <p>Getting the right people and the right chemistry is more important than getting the right idea.</p>
+      </blockquote>
+    ```
+
+  p Blockquotes come with three different font sizes&mdash;<strong>base</strong>, <strong>medium</strong> and <strong>large</strong>. Use no class for base appearance.
+
+  blockquote.blockquote-medium
+    p “I like too many things and get all confused and hung-up running from one falling star to another till i drop. This is the night, what it does to you. I had nothing to offer anybody except my own confusion.” 
+
+  blockquote.blockquote-large
+    p “War is peace. Freedom is slavery. Ignorance is strength.”
+
+  :markdown
+    ```html
+      <blockquote class='blockquote-medium'>
+        <p>“I like too many things and get all confused and hung-up running from one falling star to another till i drop. This is the night, what it does to you. I had nothing to offer anybody except my own confusion.”</p>
+      </blockquote>
+
+      <blockquote class='blockquote-large'>
+        <p>“War is peace. Freedom is slavery. Ignorance is strength.”</p>
+      </blockquote>
+    ```
+
+  h3 Lists
+  p Both ordered and unordered lists can be customized with <code>list-unstyled</code> class, that will remove the <code>padding</code> as well as individual list item style and <code>list-inline</code> class, that will change the display of list items to <code>inline-block</code>.
+
+  h4 Unordered list
+  p An unordered list represents a collection of items that do not have any particular order.
+
+  ul
+    li List element one
+    li List element two
+      ul
+        li Nested list element one
+          ul
+            li Nested list element one
+            li Nested list element two
+        li List element two
+    li List element three
+    li List element four
+
+  :markdown
+    ```html
+      <ul>
+        <li>List element one</li>
+        <li>List element two
+          <ul>
+            <li>Nested list element one
+              <ul>
+                <li>Nested list element one</li>
+                <li>Nested list element two</li>
+              </ul>
+            </li>
+            <li>Nested list element two</li>
+          </ul>
+        </li>
+        <li>List element three</li>
+        <li>List element four</li>
+      </ul>
+    ```
+
+  h4 Ordered list
+  p An ordered list represents a collection of items that do have order and will be displayed with a preceding number.
+
+  ol
+    li List element one
+    li List element two
+      ol
+        li Nested list element one
+        li Nested list element two
+    li List element three
+    li List element four
+
+  :markdown
+    ```html
+      <ol>
+        <li>List element one</li>
+        <li>List element two
+          <ol>
+            <li>Nested list element one</li>
+            <li>Nested list element two</li>
+          </ol>
+        </li>
+        <li>List element three</li>
+        <li>List element four</li>
+      </ol>
+    ```
+
+  h4 Definition list
+  p A definition list consists of pairs of terms and their descriptions.
+
+  dl
+    dt Definition term
+    dd Definition description
+
+  :markdown
+    ```html
+      <dl>
+        <dt>Definition term</dt>
+        <dd>Definition description</dd>
+      </dl>
+    ```

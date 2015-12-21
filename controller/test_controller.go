@@ -6,11 +6,10 @@ import (
 	"net/http"
 )
 
+var svc = service.ArticleService{}
 func PingController(c *gin.Context) {
 
-	svc := service.ArticleService{}
 	err := svc.Write("13", "123", "123", "1")
-
 	err = svc.WriteComment("2", "test", "test", "test@test.com")
 
 	if err != nil {
@@ -20,8 +19,12 @@ func PingController(c *gin.Context) {
 	c.JSON(http.StatusOK, gin.H{"content": "ok"})
 }
 
-func ReadTest(c *gin.Context) {
-	svc := service.ArticleService{}
+func ReadArticle(c *gin.Context) {
 	article, _ := svc.Read(c.Query("id"))
 	c.JSON(http.StatusOK, article)
+}
+
+func ReadArticleList(c *gin.Context) {
+	list, _ := svc.GetList(c.Query("page"))
+	c.JSON(http.StatusOK, list)
 }

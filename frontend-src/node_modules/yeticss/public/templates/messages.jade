@@ -1,0 +1,133 @@
+section
+  h2 Messages
+  p There are four types of messages&mdash;default (no class), alert (<code>message-alert</code>), error (<code>message-error</code>) and success (<code>message-success</code>).
+
+  .message
+    p This is a message. <a>This is a link.</a>
+
+  .message.message-error
+    p This is an error. <a>This is a link.</a>
+
+  .message.message-alert
+    p This is an alert. <a>This is a link.</a>
+
+  .message.message-success
+    p This is a success message. <a>This is a link.</a>
+
+  :markdown
+    ```html
+      <div class='message'>
+        <p>This is a message. <a>This is a link.</a></p>
+      </div>
+
+      <div class='message message-error'>
+        <p>This is an error. <a>This is a link.</a></p>
+      </div>
+
+      <div class='message message-alert'>
+        <p>This is an alert. <a>This is a link.</a></p>
+      </div>
+
+      <div class='message message-success'>
+        <p>This is a success message. <a>This is a link.</a></p>
+      </div>
+    ```
+
+  h3 Dismissable messages
+  p Messages that can be dismissed should have <code>message-dismissable</code> class and a link with <code>close</code> class.
+
+  .message.message-error.message-dismissable
+    p This is an error that can be dismissed.
+    a(class='close', title='Close') ×
+
+  .message.message-alert.message-dismissable
+    p This is an alert that can be dismissed.
+    a(class='close', title='Close') ×
+
+  .message.message-success.message-dismissable
+    p This is a success message that can be dismissed.
+    a(class='close', title='Close') ×
+
+  :markdown
+    ```html
+      <div class='message message-error message-dismissable'>
+        <p>This is an error that can be dismissed.</p>
+        <a class='close' title='close'>×</a>
+      </div>
+
+      <div class='message message-alert message-dismissable'>
+        <p>This is an alert that can be dismissed.</p>
+        <a class='close' title='close'>×</a>
+      </div>
+
+      <div class='message message-success message-dismissable'>
+        <p>This is a success message that can be dismissed.</p>
+        <a class='close' title='close'>×</a>
+      </div>
+    ```
+
+  h3 Full width messages
+  p Add <code>message-full-width</code> class for message with centered text.
+
+  .message.message-success.message-full-width.message-dismissable
+    p This is a full width success message that can be dismissed.
+    a(class='close', title='Close') ×
+
+  :markdown
+    ```html
+      <div class='message message-success message-dismissable message-full-width'>
+        <p>This is a full width success message that can be dismissed.</p>
+        <a class='close' title='close'>×</a>
+      </div>
+    ```
+
+  h3 Message positioning
+  p Messages can be easily positioned using following classes: <code>message-below</code>, <code>message-above</code>, <code>message-left</code> and <code>message-right</code>&mdash;where these classes denotate position of the message relatively to the element.
+
+
+  form(role='form')
+
+    input(class='form-input', type='text', placeholder='Your Name')
+    .message.message-below
+      p This is a message appearing below an element.
+
+    .message.message-success.message-above
+      p This is a message appearing above an element.
+    input(class='form-input', type='text', placeholder='Your Surname')
+
+  form(class='form-inline')
+
+    .form-element
+      input(class='form-input', type='text', placeholder='Your Name')
+
+    .form-element
+      .message.message-alert.message-right
+        p This is a message appearing on the right hand side of the element.
+
+  form(class='form-inline', role='form')
+
+    .form-element
+      .message.message-error.message-left
+        p This is a message appearing on the left hand side of the element.
+
+    .form-element
+      input(class='form-input', type='text', placeholder='Your Name')
+
+  :markdown
+    ```html
+      <div class='message message-below'>
+        <p>This is a message appearing below an element.</p>
+      </div>
+
+      <div class='message message-success message-above'>
+        <p>This is a message appearing above an element.</p>
+      </div>
+
+      <div class='message message-error message-left'>
+        <p>This is a message appearing on the left hand side of the element.</p>
+      </div>
+
+      <div class='message message-alert message-right'>
+        <p>This is a message appearing on the right hand side of the element.</p>
+      </div>
+    ```

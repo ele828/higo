@@ -35,6 +35,14 @@ func (as *ArticleService) Write(title, content, link, topicId string) error {
 	return nil
 }
 
+func (as *ArticleService) GetList(page string) ([]model.ArticleItem, error) {
+	list, err := model.GetList(page)
+	if err != nil {
+		return nil, err
+	}
+	return list, nil
+}
+
 func (as *ArticleService) WriteComment(id, name, email, content string) error {
 	comment := model.Comment{
 		Name: name,

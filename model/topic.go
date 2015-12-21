@@ -36,3 +36,13 @@ func(t *Topic) FetchTopic(id string) error {
 	cache.TopicsCache[id] = t
 	return nil
 }
+
+func ReadTopic(a *Article) error {
+	var topic Topic
+	q := DB.Model(a).Related(&topic)
+	if q.Error != nil {
+		return q.Error
+	}
+	a.Topic = topic
+	return nil
+}

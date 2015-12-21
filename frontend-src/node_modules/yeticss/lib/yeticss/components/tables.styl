@@ -1,0 +1,87 @@
+/*--------------------------------------------------------------------
+*
+* $TABLES
+*
+--------------------------------------------------------------------*/
+
+.table-responsive
+  overflow-x: auto
+
+table 
+  width: 100%
+  max-width: 100%
+  margin-bottom: $space
+
+td, th
+  text-align: left
+  padding: $ui-padding-default
+  border-bottom: $ui-border
+
+thead 
+
+  th
+    font-weight: $font-weight-bold
+    color: $gray-dark
+
+//- Variations
+
+tr
+
+  &.table-cell-error
+    background-color: $red-lighter
+    color: $red
+
+    a
+      color: darken($red, 20%)
+
+      &:hover
+        color: darken($red, 40%)
+
+  &.table-cell-success
+    background-color: $green-lighter
+    color: $green
+
+    a
+      color: darken($green, 20%)
+
+      &:hover
+        color: darken($green, 40%)
+
+  &.table-cell-alert
+    background-color: $orange-lighter
+    color: $orange
+
+    a
+      color: darken($orange, 20%)
+
+      &:hover
+        color: darken($orange, 40%)
+     
+//- Table Striped
+
+.table-striped
+
+  tr:nth-child(even)
+    color: $gray
+
+//- Table Outlined
+
+.table-outlined
+  border: $ui-border
+  border-radius: 3px
+
+  tr:last-of-type td
+    border: none
+
+//- Table Hovers
+
+.table-with-hover tr:hover,
+.table-striped tr:nth-child(even)
+  background-color: lighten($gray-lighter, 80%)
+
+@media screen and (max-width: $breakpoint-tablet - 1)
+
+  table
+    
+    td, th
+      padding: $ui-padding-narrow $ui-padding-default
