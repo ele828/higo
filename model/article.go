@@ -6,6 +6,7 @@ import (
 	"github.com/ele828/higo/config"
 	"strconv"
 	"time"
+	"math"
 )
 
 //------------------- ORM MODEL ---------------------//
@@ -105,4 +106,14 @@ func GetList(page string) ([]ArticleItem, error) {
 		items = append(items, item)
 	}
 	return items, nil
+}
+
+// Get total number of article list.
+func GetListPageCount() (int, error) {
+	var count int
+	q := DB.Table("articles").Count(&count)
+	if q.Error != nil {
+		return 0, q.Error
+	}
+	return int(math.Ceil(float64(count)/float64(config.PageSize))), nil
 }

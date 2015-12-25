@@ -35,12 +35,21 @@ func (as *ArticleService) Write(title, content, link, topicId string) error {
 	return nil
 }
 
-func (as *ArticleService) GetList(page string) ([]model.ArticleItem, error) {
+type List struct {
+	Data      []model.ArticleItem
+	PageCount int
+}
+func (as *ArticleService) GetList(page string) (*List, error) {
 	list, err := model.GetList(page)
+	num, err := model.GetListPageCount()
 	if err != nil {
 		return nil, err
 	}
-	return list, nil
+
+	return &List{
+		Data: list,
+		PageCount: num,
+	}, nil
 }
 
 func (as *ArticleService) WriteComment(id, name, email, content string) error {
