@@ -30,6 +30,10 @@ func ReadArticleList(c *gin.Context) {
 	c.JSON(http.StatusOK, list)
 }
 
+func ReadAboutMe(c *gin.Context) {
+	c.JSON(http.StatusOK, gin.H{"Content": "待更新..."})
+}
+
 func Frontend(c *gin.Context) {
 	c.HTML(http.StatusOK, "index.html", gin.H{})
 }

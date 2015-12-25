@@ -22,6 +22,7 @@ func PublicRouter(r *gin.Engine) {
 		v.GET("/ping", controller.PingController)
 		v.GET("/list", controller.ReadArticleList)
 		v.GET("/read", controller.ReadArticle)
+		v.GET("/about", controller.ReadAboutMe)
 		v.GET("/", controller.ReadArticle)
 	}
 }

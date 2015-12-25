@@ -3,6 +3,7 @@ import { Router, Route, Link } from 'react-router';
 import fetch from '../Util/fetch';
 import cfg from '../Util/config';
 import Navigator from './Navigator';
+import Loading from './Loading';
 import styles from './List.css';
 
 export default class Home extends Component {
@@ -13,14 +14,19 @@ export default class Home extends Component {
         props.params.pageId = 1;
     this.state = {
         pageId: parseInt(props.params.pageId),
-        lists: []
+        lists: [],
+        pageCount: 0
     }
     this._fetchList(props.params.pageId)
   }
 
   _nextPage() {
+      if(this.state.pageId + 1 > this.state.pageCount)
+        return;
+
       this.setState({
-          pageId: this.state.pageId+1
+          pageId: this.state.pageId+1,
+          lists: []
       })
       this._fetchList(this.state.pageId+1)
   }
@@ -29,14 +35,16 @@ export default class Home extends Component {
       if(this.state.pageId-1 < 1)
         return;
       this.setState({
-          pageId: this.state.pageId-1
+          pageId: this.state.pageId-1,
+          lists:[]
       })
       this._fetchList(this.state.pageId-1)
   }
 
   _resetPageId() {
       this.setState({
-          pageId: 1
+          pageId: 1,
+          lists:[]
       })
   }
 
@@ -48,7 +56,8 @@ export default class Home extends Component {
       .then((ret)=> {
           if ( ret !== null ) {
               this.setState({
-                  lists: ret
+                  lists: ret.Data,
+                  pageCount: ret.PageCount
               })
           } else {
               window.history.go(-1);
@@ -86,6 +95,7 @@ export default class Home extends Component {
         <section className={styles.container}>
             <div className={styles.wrap}>
                 <ul className={styles.list}>
+                    {this.state.lists.length==0? <Loading/>:null}
                     {listView && listView}
                 </ul>
                 <section className={styles.paginator}>
@@ -97,7 +107,8 @@ export default class Home extends Component {
                             </Link>
                         </li>
                         <li>
-                            <Link onClick={this._nextPage.bind(this)} to={"/list/" + (this.state.pageId+1)}>
+                            <Link onClick={this._nextPage.bind(this)}
+                                to={"/list/" + (this.state.pageId+1>this.state.pageCount?this.state.pageId:(this.state.pageId+1))}>
                                 Next
                             </Link>
                         </li>

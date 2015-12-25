@@ -5,6 +5,7 @@ import createBrowserHistory from 'history/lib/createBrowserHistory';
 import Home from './Component/Home';
 import List from './Component/List';
 import Article from './Component/Article';
+import About from './Component/About';
 
 import Construction from './Component/Construction';
 
@@ -20,6 +21,7 @@ export default class AppRouter extends React.Component {
             <Route path="/topic" component={Construction} />
             <Route path="/tag" component={Construction} />
             <Route path="/friend" component={Construction} />
+            <Route path="/about" component={About} />
           </Router>
         );
   }

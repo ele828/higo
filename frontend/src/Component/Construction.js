@@ -1,11 +1,9 @@
 import React, { Component } from 'react';
 import { Router, Route, Link } from 'react-router';
-import fetch from '../Util/fetch';
-import cfg from '../Util/config';
 import Navigator from './Navigator';
 import styles from './List.css';
 
-export default class Home extends Component {
+export default class Cons extends Component {
 
   constructor(props, context) {
     super(props, context)
@@ -14,10 +12,10 @@ export default class Home extends Component {
   render() {
     return (
       <div>
-        <Navigator reset={this._resetPageId.bind(this)}/>
-        <div className={[styles.back]}></div>
-        <section className={styles.container}>
-            Construction
+        <Navigator/>
+        <section className={styles.container} style={{textAlign: 'center'}}>
+            <h1>Under Construction.</h1>
+            <a target="_blank" href="https://github.com/ele828/higo" style={{textDecoration: 'underline'}}>Powered by Higo</a>
         </section>
       </div>
     )

@@ -1,7 +1,7 @@
 :local(.back) {
 	position: fixed;
 	top: 0%;
-	background: url("https://images.unsplash.com/photo-1433208406127-d9e1a0a1f1aa?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&w=1080&fit=max&s=a8ee512c0722c73021f419bf3e8ef4f9");
+	background: url("//images.unsplash.com/photo-1433208406127-d9e1a0a1f1aa?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&w=1080&fit=max&s=a8ee512c0722c73021f419bf3e8ef4f9");
 	/*background: url("https://images.unsplash.com/reserve/m6rT4MYFQ7CT8j9m2AEC_JakeGivens%20-%20Sunset%20in%20the%20Park.JPG?crop=entropy&dpr=2&fit=crop&fm=jpg&h=775&ixjsv=2.1.0&ixlib=rb-0.3.5&q=50&w=1275");*/
 	width: 100%;
 	height: 100%;
@@ -43,7 +43,7 @@
 }
 :local(.list li) {
 	padding-left: 20px;
-    margin-bottom: 25px;
+    margin-bottom: 20px;
 	border-bottom: 1px dotted #ccc;
 }
 :local(.list a) {
@@ -76,6 +76,7 @@
 :local(.paginator) {
 	list-style: none;
 	margin: 0 auto;
+	margin-top: 10px;
 	text-align: center;
 }
 :local(.paginator ul) {
