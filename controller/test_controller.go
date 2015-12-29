@@ -31,7 +31,18 @@ func ReadArticleList(c *gin.Context) {
 }
 
 func ReadAboutMe(c *gin.Context) {
-	c.JSON(http.StatusOK, gin.H{"Content": "待更新..."})
+	c.JSON(http.StatusOK, gin.H{"Content": `Hey, welcome! I'm Eric Wong, a really passionate web developer, now pursuing my bachelor's degree at Northeastern University(China) as junior student, marjored in Software Engineering.
+
+I'm crazy about web full stack technologies, from Front end to Back end. Always focusing on fantastic web front end techniques and high performance server development.
+
+This is my personal blog, it's written by Golang and React, called [higo](https://github.com/ele828/higo). I plan to make a really cool blog system, now it's still under construction, I'll constantly add new features to it as far as I'm free and I really appreciate it if any of you can join together to finish it.
+
+Now, I'm actively seeking for a 2016 Summer / Fall internship oppotunity of Web Front End or Full Stack Software Engineer position. If you think I'm qualified, please reach out to me :)
+
+## Contact Me
+* Email: eric@dobest.me
+* Github: [https://github.com/ele828](https://github.com/ele828)
+* Linkedin: [http://cn.linkedin.com/in/ele828/en](http://cn.linkedin.com/in/ele828/en)`})
 }
 
 func Frontend(c *gin.Context) {
