@@ -123,3 +123,26 @@ body {
     0% {opacity: 0;}
     100% {opacity: 1;}
 }
+
+@media screen and (max-width: 750px) {
+	:local(.profile) {
+		margin-top: 50px;
+		width: 100%;
+	}
+	:local(.site li a) {
+		margin-left: 5px;
+		width: 150px;
+		height: 30px;
+		line-height: 30px;
+		padding: 0px 0px;
+		font-size: 14px;
+	}
+	:local(.site li) {
+		display: block;
+		margin-top: 10px;
+		text-align: center;
+	}
+	:local(.copyright p) {
+		font-size: 12px;
+	}
+}

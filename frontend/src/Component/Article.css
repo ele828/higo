@@ -44,8 +44,6 @@ body {
     line-height: 1.8;
     word-spacing: 3px;
     color: #35455c;
-    /*overflow: auto;*/
-    /*height: 600px;*/
 }
 :local(.list) {
     list-style: disc;
@@ -61,4 +59,26 @@ body {
 :local(.list a:hover) {
     text-decoration:underline;
     color: #7bc91e;
+}
+
+@media screen and (max-width: 750px) {
+    :local(.container) {
+        margin-left: 5%;
+        width: 90%;
+        top: 100px !important;
+    }
+    :local(.wrap) {
+        width: 100%;
+    }
+
+    :local(.title) {
+        font-size: 18px !important;
+    }
+
+    p, li, span {
+        font-size: 13px;
+    }
+    code, code span{
+        font-size: 10px;
+    }
 }

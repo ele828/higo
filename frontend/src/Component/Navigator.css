@@ -34,6 +34,7 @@
 	border-bottom: 1px solid #eee;
 	overflow: hidden;
 	box-shadow: 0px 0px 3px 1px rgba(255, 255, 255, 0.5);
+	transition: .5s;
 }
 :local(.whitenav) {
 	position: absolute;
@@ -89,4 +90,68 @@
 	display: inline-block;
 	position: absolute;
 	right: 0;
+}
+
+:local(.button) {
+	position: absolute;
+	right: 10px;
+	top: 15px;
+	z-index: 999999;
+	transition: .5s;
+}
+
+@media screen and (max-width: 750px) {
+  :local(.left) {
+	  padding-left: 20px;
+  }
+  :local(.prev) {
+	  display: none !important;
+  }
+  :local(.menu li a) {
+	  width: 100%;
+	  margin-right: 0px;
+	  border: none !important;
+  }
+  .highlight {
+	border-radius: 0 !important;
+	background: rgba(53, 69, 92, 1);
+	color: #fff !important;
+  }
+  :local(.menu) {
+	  margin-top: 40px !important;
+  }
+  :local(.menu li) {
+	  margin-right: 0px;
+	  display: block;
+  }
+  :local(.left) {
+	  position: absolute;
+	  width: 100px;
+	  z-index: 999999;
+  }
+  :local(.right) {
+	position: absolute !important;
+	/*right: auto;*/
+	left: 0;
+	width: 100%;
+	margin: 0 auto;
+	transition: .5s;
+  }
+  :local(.menu) {
+	  width: 100%;
+	  padding: 0;
+	  padding-top: 20px;
+	  margin: 0 auto;
+  }
+  :local(.menu li) {
+	  text-align: center;
+  }
+  :local(.icon) {
+	  font-size: 25px !important;
+	  color: #35455c;
+	  cursor: pointer;
+  }
+  :local(.logo) {
+	  margin-top: 15px !important;
+  }
 }

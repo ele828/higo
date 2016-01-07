@@ -33,9 +33,10 @@ export default class Navigator extends Component {
     this.state = {
       active: 0,
       white: white,
-      resetFunc: props.reset || function() {}
+      resetFunc: props.reset || function() {},
+      isMobile: false,
+      fold: true
     }
-
   }
 
   componentWillMount() {
@@ -47,12 +48,40 @@ export default class Navigator extends Component {
               active: i
             })
       })
-    })
+    });
+
+    // calculate if it's mobile devices.
+    this.updateDeviceInfo();
+
+    // mobile detection.
+    window.addEventListener("resize", ()=>{this.deviceDetection()});
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener("resize", ()=>{this.deviceDetection()});
+  }
+
+  deviceDetection() {
+      this.updateDeviceInfo();
+  }
+
+  updateDeviceInfo() {
+      var width = window.innerWidth;
+      if (width <= 750) {
+          this.setState({
+              isMobile: true
+          });
+      } else {
+          this.setState({
+              isMobile: false,
+              fold: true
+          });
+      }
   }
 
   render() {
 
-  	const menu = navList.map( (item, i)=> {
+  	const menu = navList.map( (item, i) => {
   		return (
   				<li key={i}>
 	       			<Link to={item.link[0]} onClick={()=>{ this.setState({active: i}); this.state.resetFunc(); }}
@@ -62,18 +91,45 @@ export default class Navigator extends Component {
 	       		</li>
   			)
   	});
-
+    const navHeight = this.state.isMobile
+                    ? "60px"
+                    : "70px";
     return (
       <section className={styles.wrap}>
-      	<nav className={this.state.white?styles.whitenav:styles.nav}>
+      	<nav className={this.state.white?styles.whitenav:styles.nav}
+            style={{
+                height: !this.state.fold
+                            ? "280px"
+                            : navHeight
+              , background: "rgba(255,255,255,0.8)"
+            }}>
       		<div className={styles.left}>
                 <Link to="/">
                     <img src={e} className={styles.logo}/>
                 </Link>
       		</div>
-	       	<div className={styles.right}>
+            <div className={styles.button}
+                style={{
+                    display: this.state.isMobile
+                                ? "block"
+                                : "none",
+                    transform: this.state.isMobile && !this.state.fold
+                                 ? "rotate(-90deg)"
+                                 : "rotate(0deg)"
+                }}>
+                <div onClick={(e) => {
+                        this.setState({fold: !this.state.fold});
+                    }}>
+                    <i className={["iconfont", styles.icon].join(' ')}>&#xe602;</i>
+                </div>
+            </div>
+	       	<div className={styles.right} style={{
+                    opacity: this.state.isMobile && this.state.fold
+                              ? '0'
+                              : '1'
+                    }}>
 	       		<ul className={styles.menu}>
-                    <li>
+                    <li className={styles.prev}>
                         <a href="http://www.dobest.me:3000" target="_blank">
                             Prev Blog
                         </a>

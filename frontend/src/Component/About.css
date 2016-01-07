@@ -46,3 +46,32 @@
     text-align: center;
     color: #35455c;
 }
+
+@media screen and (max-width: 750px) {
+	:local(.container) {
+		margin-left: 5%;
+		width: 90%;
+		top: 110px !important;
+	}
+	:local(.wrap) {
+		width: 100%;
+	}
+	:local(.back) {
+		background-position: 50%;
+	}
+	:local(.list h3) {
+		font-size: 14px !important;
+		white-space: nowrap;
+		overflow: hidden;
+		text-overflow: ellipsis;
+	}
+	:local(.icon) {
+		font-size: 14px !important;
+	}
+	:local(.info span) {
+		font-size: 12px !important;
+	}
+	:local(.list) {
+		height:460px;
+	}
+}
