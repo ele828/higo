@@ -1,7 +1,7 @@
 ![higo](http://7oxilx.com1.z0.glb.clouddn.com/higo.png)
 
 Aims to build a full-featured blog system.
-Front-end and back-end are totally seprated by RESTful API.
+Front-end and back-end are totally seprated through RESTful API.
 Techniques we use are Golang & React
 
 # Screen shot
