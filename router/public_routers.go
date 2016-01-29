@@ -8,7 +8,7 @@ import (
 // Public Router
 // Set http request dispatcher
 func PublicRouter(r *gin.Engine) {
-	r.LoadHTMLGlob("public/html/*")
+	r.LoadHTMLGlob("public/index.html")
 	r.Static("/public", "./public")
 	r.Static("/resume", "./public/resume")
 

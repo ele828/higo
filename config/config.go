@@ -6,7 +6,7 @@ const (
 
 	// Database Settings
 	DbUser = "root"
-	DbPass = "huangweiwei"
+	DbPass = ""
 	DbHost = "127.0.0.1"
 	DbPort = "3306"
 	DbName = "higo"
