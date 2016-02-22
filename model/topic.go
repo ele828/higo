@@ -17,6 +17,9 @@ func(t *Topic) Create() error {
 	if db.Error != nil {
 		return db.Error
 	}
+	if db.Error != nil {
+		return db.Error
+	}
 	return nil
 }
 

@@ -1,3 +1,4 @@
+vendor/
 ./higo
 .idea/
 frontend/node_modules/
