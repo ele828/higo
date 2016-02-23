@@ -16,12 +16,13 @@ func (as *ArticleService) Read(id string) (*model.Article, error) {
 }
 
 // Write an article service
-func (as *ArticleService) Write(title, content, link, topicId string) error {
+func (as *ArticleService) Write(title, content, link, topicId string) (err error) {
 	topic := new(model.Topic)
-	err := topic.FetchTopic(topicId)
-	if err != nil {
+	// fetch topic data from db by topic ID
+	if err = topic.FetchTopic(topicId); err != nil {
 		return err
 	}
+
 	var article = model.Article {
 		Title:   title,
 		Content: content,

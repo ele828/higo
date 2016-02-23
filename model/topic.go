@@ -1,8 +1,4 @@
 package model
-import (
-	"github.com/ele828/higo/cache"
-	"fmt"
-)
 
 type Topic struct {
 	ID    int
@@ -25,18 +21,10 @@ func(t *Topic) Create() error {
 
 // Read Topic Data From Storage.
 func(t *Topic) FetchTopic(id string) error {
-	// Cache
-	if v, ok := cache.TopicsCache[id]; ok {
-		fmt.Println("hit cache")
-		t = v.(*Topic)
-		return nil;
-	}
-
 	q := DB.First(t, id)
 	if q.Error != nil {
 		return q.Error
 	}
-	cache.TopicsCache[id] = t
 	return nil
 }
 
