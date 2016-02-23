@@ -40,8 +40,12 @@ type List struct {
 	PageCount int
 }
 func (as *ArticleService) GetList(page string) (*List, error) {
-	list, err := model.GetList(page)
-	num, err := model.GetListPageCount()
+	listModel := new(model.List)
+	list, err := listModel.GetList(page)
+	if err != nil {
+		return nil, err
+	}
+	num, err := listModel.GetListPageCount()
 	if err != nil {
 		return nil, err
 	}

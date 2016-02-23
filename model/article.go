@@ -38,7 +38,7 @@ type ArticleItem struct {
 }
 
 var (
-	GivenPageNumberError = errors.New("Given page number is invalid.")
+	ErrGivenPageNumber = errors.New("Given page number is invalid.")
 )
 
 // Write an article from storage
@@ -75,23 +75,31 @@ func (a *Article) WriteComment(c Comment) error {
 	return nil
 }
 
+type List struct {}
+
 // Get a list of articles
-func GetList(page string) ([]ArticleItem, error) {
+func (l *List) GetList(page string) ([]ArticleItem, error) {
 	pageSize := config.PageSize
 	p, err := strconv.Atoi(page)
 	if err != nil {
-		return nil, GivenPageNumberError
+		return nil, ErrGivenPageNumber
 	}
 	start := (p - 1) * pageSize
+	if start <=0 {
+		return nil, ErrGivenPageNumber
+	}
 	var articles = []Article{}
-	q := DB.Order("id desc").Limit(pageSize).Offset(start).Find(&articles)
+	q := DB.Order("id desc").
+				Limit(pageSize).
+					Offset(start).
+					Find(&articles)
+
 	if q.Error != nil {
 		return nil, q.Error
 	}
 	var items []ArticleItem
 	for _, v := range articles {
-		err := ReadTopic(&v)
-		if err != nil {
+		if err := ReadTopic(&v); err != nil {
 			return nil, err
 		}
 		item := ArticleItem {
@@ -109,7 +117,7 @@ func GetList(page string) ([]ArticleItem, error) {
 }
 
 // Get total number of article list.
-func GetListPageCount() (int, error) {
+func (l *List) GetListPageCount() (int, error) {
 	var count int
 	q := DB.Table("articles").Count(&count)
 	if q.Error != nil {

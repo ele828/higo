@@ -4,6 +4,7 @@ import (
 	"github.com/ele828/higo/service"
 	"github.com/gin-gonic/gin"
 	"net/http"
+	"fmt"
 )
 
 var svc = service.ArticleService{}
@@ -26,8 +27,13 @@ func ReadArticle(c *gin.Context) {
 }
 
 func ReadArticleList(c *gin.Context) {
-	list, _ := svc.GetList(c.Query("page"))
-	c.JSON(http.StatusOK, list)
+	list, err := svc.GetList(c.Query("page"))
+	if err != nil {
+		fmt.Println(err)
+		c.JSON(404, err.Error())
+	} else {
+		c.JSON(http.StatusOK, list)
+	}
 }
 
 func ReadAboutMe(c *gin.Context) {
