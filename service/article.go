@@ -2,6 +2,7 @@ package service
 
 import (
 	"github.com/ele828/higo/model"
+	"strconv"
 )
 
 type ArticleService struct{}
@@ -15,7 +16,7 @@ func (as *ArticleService) Read(id string) (*model.Article, error) {
 }
 
 // Write an article service
-func (as *ArticleService) Write(title, content, link, topicId string) (err error) {
+func (as *ArticleService) Write(title, content, link, topicId string, tags []model.Tag) (err error) {
 	topic := new(model.Topic)
 	// fetch topic data from db by topic ID
 	if err = topic.FetchTopic(topicId); err != nil {
@@ -56,8 +57,9 @@ func (as *ArticleService) GetList(page string) (*List, error) {
 	return &List{Code: 200, Data: list, PageCount: count}, nil
 }
 
+// Write an comment for specified article
 func (as *ArticleService) WriteComment(id, name, email, content string) error {
-	comment := model.Comment{
+	comment := model.Comment {
 		Name:    name,
 		Email:   email,
 		Content: content,
@@ -71,5 +73,22 @@ func (as *ArticleService) WriteComment(id, name, email, content string) error {
 	if err != nil {
 		return err
 	}
+	return nil
+}
+
+// Write an article tag
+func (as *ArticleService) WriteTag(id, name, count string) error {
+	ID, err := strconv.Atoi(id)
+	if err != nil {
+		return err
+	}
+	tag := model.Tag{
+		ID: ID,
+		Name: name,
+		Count: 0,
+	}
+
+	tag.Create()
+
 	return nil
 }

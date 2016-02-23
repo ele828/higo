@@ -12,13 +12,18 @@ var svc = service.ArticleService{}
 func PingController(c *gin.Context) {
 
 	//err := svc.Write("13", "123", "123", "1")
-	//err = svc.WriteComment("2", "test", "test", "test@test.com")
+	_ = svc.WriteComment("2", "test", "test", "test@test.com")
 	//
 	//if err != nil {
 	//	c.JSON(http.StatusOK, gin.H{"content": err.Error()})
 	//}
 
-	c.JSON(http.StatusOK, gin.H{"content": "ok"})
+	c.JSON(http.StatusOK, gin.H{"Status": "ok"})
+}
+
+func WriteTest(c *gin.Context) {
+	//svc.Write("name", "content", "link", "10")
+	c.JSON(http.StatusOK, gin.H{"Status": "write ok"})
 }
 
 func ReadArticle(c *gin.Context) {

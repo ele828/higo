@@ -39,7 +39,7 @@ type ArticleItem struct {
 	Time       string
 }
 
-// Write an article from storage
+// Write an article
 func (a *Article) Write() error {
 	db := DB.Create(a)
 	if db.Error != nil {
@@ -72,7 +72,7 @@ func (a *Article) Read(id string) error {
 	return nil
 }
 
-// Insert into a comment to an article
+// Insert a comment into an article
 func (a *Article) WriteComment(c Comment) error {
 	a.Comment = append(a.Comment, c)
 	a.CommentCount = a.CommentCount + 1

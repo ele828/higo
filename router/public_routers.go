@@ -20,6 +20,8 @@ func PublicRouter(r *gin.Engine) {
 	v := r.Group("/api")
 	{
 		v.GET("/ping", controller.PingController)
+		v.GET("/write", controller.WriteTest)
+
 		v.GET("/list", controller.ReadArticleList)
 		v.GET("/read", controller.ReadArticle)
 		v.GET("/about", controller.ReadAboutMe)

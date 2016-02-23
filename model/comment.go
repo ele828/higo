@@ -15,6 +15,7 @@ type Comment struct {
 	Time      string    `sql:"-"`
 }
 
+// Write a comment
 func (c *Comment) Create() error {
 	db := DB.Create(c)
 	if db.Error != nil {
