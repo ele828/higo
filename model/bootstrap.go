@@ -32,10 +32,10 @@ func InstallORMEngine() error {
 func InstallModels() {
 	DB.Set("gorm:table_options", "ENGINE=InnoDB").Set("gorm:table_options", "DEFAULT CHARSET=utf8").
 		AutoMigrate(
-		&Article{},
-		&Topic{},
-		&Tag{},
-		&Comment{},
-		&Friend{},
-	)
+			&Article{},
+			&Topic{},
+			&Tag{},
+			&Comment{},
+			&Friend{},
+		)
 }

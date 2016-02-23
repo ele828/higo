@@ -1,8 +1,8 @@
 package router
 
 import (
-	"github.com/gin-gonic/gin"
 	"github.com/ele828/higo/controller"
+	"github.com/gin-gonic/gin"
 )
 
 // Public Router

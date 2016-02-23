@@ -1,12 +1,14 @@
 package model
 
 import (
-	"errors"
 	"github.com/ele828/higo/common"
 	"github.com/ele828/higo/config"
+	. "github.com/ele828/higo/error"
+	"github.com/jinzhu/gorm"
+	"log"
+	"math"
 	"strconv"
 	"time"
-	"math"
 )
 
 //------------------- ORM MODEL ---------------------//
@@ -37,10 +39,6 @@ type ArticleItem struct {
 	Time       string
 }
 
-var (
-	ErrGivenPageNumber = errors.New("Given page number is invalid.")
-)
-
 // Write an article from storage
 func (a *Article) Write() error {
 	db := DB.Create(a)
@@ -52,10 +50,20 @@ func (a *Article) Write() error {
 
 // Read an article from storage
 func (a *Article) Read(id string) error {
+	// id validator
+	if id, err := strconv.Atoi(id); err != nil || id < 0 {
+		return ErrGivenArticleId
+	}
 	q := DB.First(a, id)
 	if q.Error != nil {
+		// article not found error
+		if q.Error == gorm.RecordNotFound {
+			log.Print(ErrArticleNotFound.Error())
+			return ErrArticleNotFound
+		}
 		return q.Error
 	}
+
 	a.Time = common.FormatTime(a.CreateAt)
 	err := ReadComments(a)
 	if err != nil {
@@ -75,7 +83,7 @@ func (a *Article) WriteComment(c Comment) error {
 	return nil
 }
 
-type List struct {}
+type List struct{}
 
 // Get a list of articles
 func (l *List) GetList(page string) ([]ArticleItem, error) {
@@ -85,24 +93,30 @@ func (l *List) GetList(page string) ([]ArticleItem, error) {
 		return nil, ErrGivenPageNumber
 	}
 	start := (p - 1) * pageSize
-	if start <=0 {
+	if start < 0 {
 		return nil, ErrGivenPageNumber
 	}
 	var articles = []Article{}
 	q := DB.Order("id desc").
-				Limit(pageSize).
-					Offset(start).
-					Find(&articles)
+		Limit(pageSize).
+		Offset(start).
+		Find(&articles)
 
 	if q.Error != nil {
 		return nil, q.Error
 	}
+
+	// if articles not found
+	if len(articles) == 0 {
+		return nil, ErrEmptyList
+	}
+
 	var items []ArticleItem
 	for _, v := range articles {
 		if err := ReadTopic(&v); err != nil {
 			return nil, err
 		}
-		item := ArticleItem {
+		item := ArticleItem{
 			ID:         v.ID,
 			Title:      v.Title,
 			Topic:      v.Topic.Name,
@@ -123,5 +137,5 @@ func (l *List) GetListPageCount() (int, error) {
 	if q.Error != nil {
 		return 0, q.Error
 	}
-	return int(math.Ceil(float64(count)/float64(config.PageSize))), nil
+	return int(math.Ceil(float64(count) / float64(config.PageSize))), nil
 }

@@ -8,8 +8,7 @@ type ArticleService struct{}
 
 func (as *ArticleService) Read(id string) (*model.Article, error) {
 	article := new(model.Article)
-	err := article.Read(id)
-	if err != nil {
+	if err := article.Read(id); err != nil {
 		return nil, err
 	}
 	return article, nil
@@ -23,7 +22,7 @@ func (as *ArticleService) Write(title, content, link, topicId string) (err error
 		return err
 	}
 
-	var article = model.Article {
+	var article = model.Article{
 		Title:   title,
 		Content: content,
 		Link:    link,
@@ -37,30 +36,30 @@ func (as *ArticleService) Write(title, content, link, topicId string) (err error
 }
 
 type List struct {
+	Code      int16
 	Data      []model.ArticleItem
 	PageCount int
 }
+
 func (as *ArticleService) GetList(page string) (*List, error) {
 	listModel := new(model.List)
 	list, err := listModel.GetList(page)
 	if err != nil {
 		return nil, err
 	}
-	num, err := listModel.GetListPageCount()
+
+	count, err := listModel.GetListPageCount()
 	if err != nil {
 		return nil, err
 	}
 
-	return &List{
-		Data: list,
-		PageCount: num,
-	}, nil
+	return &List{Code: 200, Data: list, PageCount: count}, nil
 }
 
 func (as *ArticleService) WriteComment(id, name, email, content string) error {
 	comment := model.Comment{
-		Name: name,
-		Email: email,
+		Name:    name,
+		Email:   email,
 		Content: content,
 	}
 	article, err := as.Read(id)

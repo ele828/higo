@@ -1,12 +1,13 @@
 package middleware
 
 import (
-	"github.com/gin-gonic/gin"
 	"database/sql"
+	"github.com/gin-gonic/gin"
 	_ "github.com/go-sql-driver/mysql"
 )
 
 var db *sql.DB
+
 func Storage(cfg string) gin.HandlerFunc {
 	db, err := sql.Open("mysql", cfg)
 	if err != nil {

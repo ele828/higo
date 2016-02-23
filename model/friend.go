@@ -17,7 +17,7 @@ func (f *Friend) Create() error {
 }
 
 // Remove a friend link
-func(f *Friend) Remove() error {
+func (f *Friend) Remove() error {
 	q := DB.Delete(f)
 	if q.Error != nil {
 		return q.Error
@@ -26,7 +26,7 @@ func(f *Friend) Remove() error {
 }
 
 // Modify a friend link
-func(f *Friend) Update() error {
+func (f *Friend) Update() error {
 	q := DB.Save(f)
 	if q.Error != nil {
 		return q.Error

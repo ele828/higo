@@ -1,10 +1,10 @@
 package controller
 
 import (
+	. "github.com/ele828/higo/error"
 	"github.com/ele828/higo/service"
 	"github.com/gin-gonic/gin"
 	"net/http"
-	"fmt"
 )
 
 var svc = service.ArticleService{}
@@ -22,15 +22,43 @@ func PingController(c *gin.Context) {
 }
 
 func ReadArticle(c *gin.Context) {
-	article, _ := svc.Read(c.Query("id"))
-	c.JSON(http.StatusOK, article)
+	article, err := svc.Read(c.Query("id"))
+	if err != nil {
+		switch err {
+		case ErrArticleNotFound:
+			c.JSON(http.StatusNotFound, gin.H{
+				"Code":    404,
+				"Message": err.Error(),
+			})
+		case ErrGivenArticleId:
+			c.JSON(http.StatusBadRequest, gin.H{
+				"Code":    400,
+				"Message": err.Error(),
+			})
+		}
+
+	} else {
+		c.JSON(http.StatusOK, article)
+	}
 }
 
 func ReadArticleList(c *gin.Context) {
 	list, err := svc.GetList(c.Query("page"))
 	if err != nil {
-		fmt.Println(err)
-		c.JSON(404, err.Error())
+		switch err {
+		case ErrGivenPageNumber:
+			c.JSON(http.StatusBadRequest, gin.H{
+				"Code":    400,
+				"Message": ErrGivenPageNumber.Error(),
+			})
+
+		case ErrEmptyList:
+			c.JSON(http.StatusNotFound, gin.H{
+				"Code":    404,
+				"Message": ErrEmptyList.Error(),
+			})
+		default:
+		}
 	} else {
 		c.JSON(http.StatusOK, list)
 	}
